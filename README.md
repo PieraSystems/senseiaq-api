@@ -9,15 +9,15 @@ Note, CORS is enabled for all API endpoints. When testing locally in a browser, 
 
 Login with a username and password, responds with a cookie for browser-based authentication.
 
-Request fields:
+**Request fields:**
 - username
 - password
 
-Response fields:
+**Response fields:**
 - message 
 
+**Example code:**
 ```
-Example code:
 let data = {
     username: "user",
     password: "pass"
@@ -34,18 +34,20 @@ fetch("https://sensei.pierasystems.com/api/login", {
 });
 ```
 
-/api/get-access-token
-HTTP POST
+## /api/get-access-token
+*HTTP POST*
+
 Login with a username and password, responds with an access token for universal authentication.
 
-Request fields:
-username
-password
+**Request fields:**
+- username
+- password
 
-Response fields:
-token
+**Response fields:**
+- token
 
-Example code:
+**Example code:**
+```
 let data = {
     username: "user",
     password: "pass"
@@ -59,20 +61,23 @@ fetch("https://sensei.pierasystems.com/api/get-access-token", {
 }).then(body => {
     console.log(body.token);
 });
+```
 
-/api/register
-HTTP POST
+## /api/register
+*HTTP POST*
+
 Register for a new account. The response message indicates whether or not registration was successful.
 
-Request fields:
-username
-email
-password
+**Request fields:**
+- username
+- email
+- password
 
-Response fields:
-message
+**Response fields:**
+- message
 
-Example code:
+**Example code:**
+```
 let data = {
     username: "user",
     password: "pass",
@@ -88,18 +93,21 @@ fetch("https://sensei.pierasystems.com/api/register", {
     // "registration-success"
     console.log(body.message);
 });
+```
 
-/api/reset-password
-HTTP POST
+## /api/reset-password
+*HTTP POST*
+
 Reset account password via email. If the email address is found in the database, an email is sent out with a password reset token.
 
-Request fields:
-email
+**Request fields:**
+- email
 
-Response fields:
-message
+**Response fields:**
+- message
 
-Example code:
+**Example code:**
+```
 let data = {
     email: "user@user.com"
 };
@@ -113,19 +121,22 @@ fetch("https://sensei.pierasystems.com/api/reset-password", {
     // "password-reset"
     console.log(body.message);
 });
+```
 
-/api/set-new-password
-HTTP POST
+## /api/set-new-password
+*HTTP POST*
+
 Set new password, requires password reset token from email.
 
-Request fields:
-token
-password
+**Request fields:**
+- token
+- password
 
-Response fields:
-message
+**Response fields:**
+- message
 
-Example code:
+**Example code:**
+```
 let data = {
     token: "1234abcd1234abcd1234",
     password: "pass"
@@ -140,15 +151,18 @@ fetch("https://sensei.pierasystems.com/api/set-new-password", {
     // "reset-success"
     console.log(body.message);
 });
+```
 
-/api/logout
-HTTP GET
+## /api/logout
+*HTTP GET*
+
 Logout current user. Invalidates session cookie and access token. Authentication is required.
 
-Response fields:
-message
+**Response fields:**
+- message
 
-Example code:
+**Example code:**
+```
 let accessToken = "1234abcd1234abcd1234";
 
 fetch("https://sensei.pierasystems.com/api/logout", {
@@ -162,18 +176,21 @@ fetch("https://sensei.pierasystems.com/api/logout", {
     // "logout-success"
     console.log(body.message);
 });
+```
 
-/api/account
-HTTP GET
+## /api/account
+*HTTP GET*
+
 Get current user information. Authentication is required.
 
-Response fields:
-uid
-user
-email
-created
+**Response fields:**
+- uid
+- user
+- email
+- created
 
-Example code:
+**Example code:**
+```
 let accessToken = "1234abcd1234abcd1234";
 
 fetch("https://sensei.pierasystems.com/api/account", {
@@ -187,33 +204,36 @@ fetch("https://sensei.pierasystems.com/api/account", {
     // "user name"
     console.log(body.user);
 });
+```
 
 
-/api/get-my-devices
-HTTP GET
+## /api/get-my-devices
+*HTTP GET*
+
 Get the list of devices associated with current account. Authentication is required.
 
-Response fields:
-devices - array of device objects with fields:
-did
-iotid
-name
-pm100aqi
-pm25aqi
-pm10aqi
-vocaqi
-temp
-rh
-co2
-lastupdate
-created
-location
-lat
-lng
-public
-events - array
+**Response fields:**
+- devices - array of device objects with fields:
+  - did
+  - iotid
+  - name
+  - pm100aqi
+  - pm25aqi
+  - pm10aqi
+  - vocaqi
+  - temp
+  - rh
+  - co2
+  - lastupdate
+  - created
+  - location
+  - lat
+  - lng
+  - public
+  - events - array
 
-Example code:
+**Example code:**
+```
 let accessToken = "1234abcd1234abcd1234";
 
 fetch("https://sensei.pierasystems.com/api/get-my-devices", {
@@ -227,23 +247,26 @@ fetch("https://sensei.pierasystems.com/api/get-my-devices", {
     // "Demo - Entry"
     console.log(body.devices[0].name);
 });
+```
 
-/api/get-minute-averages/[DID]?page=[0]
-HTTP GET
+## /api/get-minute-averages/[DID]?page=[0]
+*HTTP GET*
+
 Get 60 one-minute averages. See /api/get-my-devices for device IDs (DID). Endpoint uses pagination, use “?page=0” for first page, “?page=1” for the second page, etc.
 
-Response fields:
-devices - array
-data - array of one minute averages with fields:
-mid
-did
-pc01, pc03, pc05, pc10, pc25, pc50, pc100
-pm01, pm03, pm05, pm10, pm25, pm50, pm100
-temp, rh, atm, vocaqi, vocppm, gasest, co2
-location
-time
+**Response fields:**
+- devices - array
+- data - array of one minute averages with fields:
+  - mid
+  - did
+  - pc01, pc03, pc05, pc10, pc25, pc50, pc100
+  - pm01, pm03, pm05, pm10, pm25, pm50, pm100
+  - temp, rh, atm, vocaqi, vocppm, gasest, co2
+  - location
+  - time
 
-Example code:
+**Example code:**
+```
 let accessToken = "1234abcd1234abcd1234";
 
 fetch("https://sensei.pierasystems.com/api/get-minute-averages/20?page=0", {
@@ -257,23 +280,26 @@ fetch("https://sensei.pierasystems.com/api/get-minute-averages/20?page=0", {
     // "3.069499"
     console.log(body.data[0].pm100);
 });
+```
 
-/api/get-hour-averages/[DID]
-HTTP GET
+## /api/get-hour-averages/[DID]
+*HTTP GET*
+
 Get 24 one-hour averages. See /api/get-my-devices for device IDs (DID). Endpoint uses pagination, use “?page=0” for first page, “?page=1” for the second page, etc.
 
-Response fields:
-devices - array
-data - array of one minute averages with fields:
-mid
-did
-pc01, pc03, pc05, pc10, pc25, pc50, pc100
-pm01, pm03, pm05, pm10, pm25, pm50, pm100
-temp, rh, atm, vocaqi, vocppm, gasest, co2
-location
-time
+**Response fields:**
+- devices - array
+- data - array of one minute averages with fields:
+  - mid
+  - did
+  - pc01, pc03, pc05, pc10, pc25, pc50, pc100
+  - pm01, pm03, pm05, pm10, pm25, pm50, pm100
+  - temp, rh, atm, vocaqi, vocppm, gasest, co2
+  - location
+  - time
 
-Example code:
+**Example code:**
+```
 let accessToken = "1234abcd1234abcd1234";
 
 fetch("https://sensei.pierasystems.com/api/get-hour-averages/20?page=0", {
@@ -287,20 +313,23 @@ fetch("https://sensei.pierasystems.com/api/get-hour-averages/20?page=0", {
     // "28934"
     console.log(body.data[0].pc01);
 });
+```
 
-/api/get-events/[did]
-HTTP GET
+## /api/get-events/[did]
+*HTTP GET*
+
 Get recent events. See /api/get-my-devices for device IDs (DID). Endpoint uses pagination, use “?page=0” for first page, “?page=1” for the second page, etc.
 
-Response fields:
+**Response fields:**
 devices - array
 data - array of events with fields:
-eid
-did
-type
-time
+- eid
+- did
+- type
+- time
 
-Example code:
+**Example code:**
+```
 let accessToken = "1234abcd1234abcd1234";
 
 fetch("https://sensei.pierasystems.com/api/get-events/20?page=0", {
@@ -314,3 +343,4 @@ fetch("https://sensei.pierasystems.com/api/get-events/20?page=0", {
     // "smoke"
     console.log(body.data[0].type);
 });
+```
