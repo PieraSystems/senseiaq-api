@@ -1,6 +1,3 @@
-# senseiaq-api
-Documentation and Example Code for SenseiAQ's Cloud API
-
 # SenseiAQ Cloud API
 Endpoints for fetching device info from the database.
 Base URL: https://sensei.pierasystems.com
@@ -9,6 +6,7 @@ Note, CORS is enabled for all API endpoints. When testing locally in a browser, 
 
 ## /api/login
 *HTTP POST*
+
 Login with a username and password, responds with a cookie for browser-based authentication.
 
 Request fields:
