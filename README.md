@@ -4,6 +4,8 @@ Base URL: https://sensei.pierasystems.com
 
 Note, CORS is enabled for all API endpoints. When testing locally in a browser, you can use http://localhost:3000/ or http://localhost:3001/ as the origin if you’re running into CORS restrictions. If you have Python 3 installed, simply run “**python -m http.server 3000**“ in the directory you want to be your web root.
 
+PC and PM values use the following naming convention in the code: PM1.0 becomes pm10, PM2.5 becomes pm25, PM5.0 becomes pm50, and PM10 becomes pm100. 
+
 ## /api/login
 *HTTP POST*
 
@@ -217,18 +219,12 @@ Get the list of devices associated with current account. Authentication is requi
   - did
   - iotid
   - name
-  - pm100aqi
-  - pm25aqi
-  - pm10aqi
-  - vocaqi
-  - temp
-  - rh
-  - co2
+  - pm100aqi, pm25aqi, pm10aqi
+  - vocaqi, temp, rh, co2
   - lastupdate
   - created
   - location
-  - lat
-  - lng
+  - lat, lng
   - public
   - events - array
 

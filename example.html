@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+</head>
+
+<body>
+  <script>
+
+    let login = {
+      // Change to your username and password
+      username: "user",
+      password: "pass"
+    };
+
+    // Get a new access token using username and password
+    fetch("https://sensei.pierasystems.com/api/get-access-token", {
+      method: "POST",
+      body: new URLSearchParams(login)
+    }).then(res => {
+      // Convert response to JSON
+      return res.json()
+    }).then(body => {
+
+      // Get access token from JSON
+      let accessToken = body.token;
+
+      // Get list of devices
+      fetch("https://sensei.pierasystems.com/api/get-my-devices", {
+        method: "GET",
+        // Set Authorization header to use access token
+        headers: new Headers({
+          'Authorization': 'Bearer ' + accessToken
+        }),
+      }).then(res => {
+        return res.json()
+      }).then(body2 => {
+        if (body2.hasOwnProperty("devices") && body2.devices.length > 0) {
+          
+          // Get device ID (did) for first device
+          let did = body2.devices[0].did;
+
+          // Use did to query minute averages
+          fetch("https://sensei.pierasystems.com/api/get-minute-averages/" + did + "?page=0", {
+            method: "GET",
+            headers: new Headers({
+              'Authorization': 'Bearer ' + accessToken
+            }),
+          }).then(res => {
+            return res.json()
+          }).then(body3 => {
+            // Get most recent PM10.0 from minute averages
+            console.log(body3.data[0].pm100);
+          });
+        }
+      });
+    });
+
+  </script>
+</body>
+
+</html>
