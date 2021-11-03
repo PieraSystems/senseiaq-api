@@ -282,7 +282,7 @@ fetch("https://sensei.pierasystems.com/api/get-minute-averages/20?page=0", {
 });
 ```
 
-## /api/get-hour-averages/[DID]
+## /api/get-hour-averages/[DID]?page=[0]
 *HTTP GET*
 
 Get 24 one-hour averages. See /api/get-my-devices for device IDs (DID). Endpoint uses pagination, use “?page=0” for first page, “?page=1” for the second page, etc.
@@ -315,7 +315,7 @@ fetch("https://sensei.pierasystems.com/api/get-hour-averages/20?page=0", {
 });
 ```
 
-## /api/get-events/[did]
+## /api/get-events/[did]?page=[0]
 *HTTP GET*
 
 Get recent events. See /api/get-my-devices for device IDs (DID). Endpoint uses pagination, use “?page=0” for first page, “?page=1” for the second page, etc.
