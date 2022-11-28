@@ -256,7 +256,7 @@ Get 60 one-minute averages. See /api/get-my-devices for device IDs (DID). Endpoi
 
 **Update:** Endpoint now supports optional start and end times, using ISO 8061 format. Each query is limited to 100 results, and the page offset can be used if you need more than 100. The following is an example query for getting all results from "2022-06-28 18:33:00" to "2022-06-28 19:33:59" for device ID 592:
 
-*https://sensei.pierasystems.com/api-dev/get-minute-averages/592?page=0&start=2022-06-28%2018:33:00&end=2022-06-28%2019:33:59*
+*https://sensei.pierasystems.com/api/get-minute-averages/592?page=0&start=2022-06-28%2018:33:00&end=2022-06-28%2019:33:59*
 
 **Response fields:**
 - devices - array
@@ -293,7 +293,7 @@ Get 24 one-hour averages. See /api/get-my-devices for device IDs (DID). Endpoint
 
 **Update:** Endpoint now supports optional start and end times, using ISO 8061 format. Each query is limited to 100 results, and the page offset can be used if you need more than 100. The following is an example query for getting all results from "2022-06-28 18:33:00" to "2022-06-29 18:33:59" for device ID 592:
 
-*https://sensei.pierasystems.com/api-dev/get-hour-averages/592?page=0&start=2022-06-28%2018:33:00&end=2022-06-29%2018:33:59*
+*https://sensei.pierasystems.com/api/get-hour-averages/592?page=0&start=2022-06-28%2018:33:00&end=2022-06-29%2018:33:59*
 
 **Response fields:**
 - devices - array
